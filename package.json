@@ -1,0 +1,29 @@
+{
+  "name": "zwigato",
+  "version": "1.0.0",
+  "description": "This is food ordering delivery application whwre user can select a dish from restaurant and orders it",
+  "main": "app.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "jest",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AniketSharma24/zwigato.git"
+  },
+  "author": "Aniket Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AniketSharma24/zwigato/issues"
+  },
+  "homepage": "https://github.com/AniketSharma24/zwigato#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  }
+}
