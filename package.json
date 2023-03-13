@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/AniketSharma24/zwigato#readme",
   "dependencies": {
+    "@heroicons/react": "^2.0.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
