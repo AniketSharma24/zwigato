@@ -1,14 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import iconLogo from "./assets/logo/iconLogo.png";
-import {
-  LifebuoyIcon,
-  HomeIcon,
-  UserIcon,
-  ShoppingCartIcon,
-} from "@heroicons/react/24/outline";
+export const IMG_CDN =
+  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
-const RESTAURANT_LIST = [
+export const API_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.562128702570313&lng=73.75639736652374&page_type=DESKTOP_WEB_LISTING";
+
+export const RESTAURANT_LIST = [
   {
     cardType: "restaurant",
     layoutAlignmentType: "VERTICAL",
@@ -4125,96 +4120,3 @@ const RESTAURANT_LIST = [
     parentWidget: false,
   },
 ];
-
-const logo = <img className="logo" src={iconLogo} alt="app-logo" />;
-const leftSideNav = (
-  <div className="left-side-nav">
-    {logo}
-    <span>Silicon City, Banglore</span>
-  </div>
-);
-const navList = (
-  <ul className="nav-list">
-    <li>
-      {" "}
-      <HomeIcon className="hero-icon text-blue-500" />
-      Home
-    </li>
-    <li>
-      <LifebuoyIcon className="hero-icon text-blue-500" />
-      Help
-    </li>
-    <li>
-      <UserIcon className="hero-icon text-blue-500" />
-      Profile
-    </li>
-    <li>
-      <ShoppingCartIcon className="hero-icon text-blue-500" />
-      Cart
-    </li>
-  </ul>
-);
-
-const ToolBarComponet = () => {
-  return (
-    <div className="toolbar">
-      {leftSideNav}
-      {navList}
-    </div>
-  );
-};
-
-const burgerking = {
-  name: "Burger King",
-  imageUrl:
-    "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/t7c8z2gy47oydefnzh36",
-  cuisines: ["Burgers", "American"],
-  rating: "4.2",
-};
-
-const RestaurantCard = ({ name, cloudinaryImageId, cuisines, avgRating }) => {
-  return (
-    <div className="card">
-      <img
-        src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${cloudinaryImageId}`}
-      />
-      <h3>{name}</h3>
-      <p>{cuisines.join(", ")}</p>
-      <p>{avgRating} stars</p>
-    </div>
-  );
-};
-
-const MainComponent = () => (
-  <div>
-    <p className="restaurant-count">{RESTAURANT_LIST.length} restaurants</p>
-    <div className="card-container">
-      {RESTAURANT_LIST.map((restaurant) => {
-        return (
-          <RestaurantCard
-            {...restaurant.data?.data}
-            key={restaurant.data?.data?.id}
-          />
-        );
-      })}
-    </div>
-  </div>
-);
-
-const FooterComponent = () => {
-  <></>;
-};
-
-const AppLayout = () => {
-  return (
-    <>
-      <ToolBarComponet />
-      <MainComponent />
-      <FooterComponent />
-    </>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);

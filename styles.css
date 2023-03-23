@@ -58,6 +58,23 @@ li:hover {
   font-size: 2.4rem;
   font-weight: 500;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.restaurant-count > span > input, .restaurant-count > span > button {
+  padding: 0.8em 2em;
+  border: 1px solid #636e72;
+  outline: none;
+}
+
+.restaurant-count > span > input {
+  border-radius: 0.5em 0 0 0.5em;
+}
+.restaurant-count > span > button {
+  border-radius: 0 0.5em 0.5em 0;
+  cursor: pointer;
 }
 
 .card-container {
