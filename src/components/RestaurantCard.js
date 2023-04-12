@@ -1,6 +1,10 @@
 import { IMG_CDN } from '../constants/constant';
 import { StarIcon, ReceiptPercentIcon } from '@heroicons/react/24/solid';
-
+import { useNavigate } from 'react-router-dom';
+/**
+ * @param {*} rating
+ * @return {*} 
+ */
 const ratingClass = (rating) => {
   if (rating < 4) {
     return 'res-rating low';
@@ -12,6 +16,7 @@ const ratingClass = (rating) => {
 };
 
 const RestaurantCard = ({
+  id,
   name,
   cloudinaryImageId,
   cuisines,
@@ -20,8 +25,17 @@ const RestaurantCard = ({
   slaString,
   aggregatedDiscountInfo,
 }) => {
+  const navigate = useNavigate();
+  
+/**
+ * @param {*} id
+ */
+function navigateTo(id) {
+    navigate('/restaurant/' + id);
+  }
+
   return (
-    <div className='card'>
+    <div onClick={() => navigateTo(id)} className='card'>
       <img src={`${IMG_CDN + cloudinaryImageId}`} />
       <p className='res-name'>{name}</p>
       <p className='res-cuisine'>{cuisines.join(', ')}</p>

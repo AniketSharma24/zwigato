@@ -1,9 +1,18 @@
 import RestaurantCard from './RestaurantCard';
-import { API_URL, RESTAURANT_LIST } from '../constants/constant';
+import { API_URL } from '../constants/constant';
 import { useEffect, useState } from 'react';
 import notFound from '../../assets/images/notFound.svg';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-
+import Shimmer from './Shimmer';
+import { Link } from 'react-router-dom';
+import ServerError from './ServerError';
+/**
+ *
+ *
+ * @param {*} searchedText
+ * @param {*} restaurants
+ * @return {*} 
+ */
 const searchRestaurants = (searchedText, restaurants) => {
   return restaurants.filter((restaurant) =>
     restaurant.data?.name?.toLowerCase().includes(searchedText.toLowerCase())
@@ -14,23 +23,32 @@ const BodyComponent = () => {
   const [searchedText, setSearchedText] = useState('');
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    // Fake api
     getAllRestaurants();
-    console.log('useEffect() called');
   }, []);
 
-  async function getAllRestaurants() {
-    const response = await fetch(API_URL);
-    const data = await response.json();
-    const list = data?.data?.cards[2]?.data?.data?.cards;
-    setFilteredRestaurants(list);
-    setAllRestaurants(list);
+async function getAllRestaurants() {
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      const list = data?.data?.cards[2]?.data?.data?.cards;
+      setFilteredRestaurants(list);
+      setAllRestaurants(list);
+    } catch (err) {
+      setIsError(true);
+    }
   }
-  console.log('render() called');
+
+  if (isError) {
+    return (
+      <ServerError message='There is an error from the server. Please retry after sometime.' />
+    );
+  }
+
   return allRestaurants.length === 0 ? (
-    <p className='search-text'>Searching...</p>
+    <Shimmer />
   ) : (
     <div>
       <p className='restaurant-count'>
@@ -57,7 +75,7 @@ const BodyComponent = () => {
       </p>
       {filteredRestaurants.length === 0 ? (
         <div className='not-found-error'>
-          <img src={notFound} />
+          <img className='not-found-error-img' src={notFound} />
           <p>
             <ExclamationTriangleIcon className='hero-icon text-blue-500' />
             No restaurant matches your search criteria
