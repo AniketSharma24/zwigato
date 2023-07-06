@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import ToolBarComponent from '../Toolbar';
-import BodyComponent from '../Body';
-import FooterComponent from '../Footer';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import RouteError from '../RouteError';
-import About from '../About';
-import Help from '../Help';
-import RestaurantDetails from '../RestaurantDetails';
-import AboutClass from '../AboutClass';
-import ProfileClass from '../ProfileClass';
+import BodyComponent from '../Body';
 import Cart from '../Cart';
+import FooterComponent from '../Footer';
+import Help from '../Help';
+import ProfileClass from '../ProfileClass';
+import RestaurantDetails from '../RestaurantDetails';
+import RouteError from '../RouteError';
+import ToolBarComponent from '../Toolbar';
+
+const About = lazy(() => import('../About'));
 
 const AppLayout = () => {
   return (
@@ -34,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <AboutClass />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: '/help',
