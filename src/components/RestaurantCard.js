@@ -35,7 +35,7 @@ function navigateTo(id) {
   }
 
   return (
-    <div onClick={() => navigateTo(id)} className='card'>
+    <div onClick={() => navigateTo(id)} className='card shadow'>
       <img src={`${IMG_CDN + cloudinaryImageId}`} />
       <p className='res-name'>{name}</p>
       <p className='res-cuisine'>{cuisines.join(', ')}</p>

@@ -8,17 +8,18 @@ import {
 } from '@heroicons/react/24/outline';
 import { NavLink } from 'react-router-dom';
 
-const logo = <img className='logo' src={iconLogo} alt='app-logo' />;
+const logo = <img className='w-12 h-10' src={iconLogo} alt='app-logo' />;
 const leftSideNav = (
-  <div className='left-side-nav'>
+  <div className='flex items-center justify-center gap-5 text-sm'>
     {logo}
     <span>Silicon City, Banglore</span>
   </div>
 );
 const navList = (
-  <ul className='nav-list'>
+  <ul className='flex items-center justify-center gap-5'>
     <li>
       <NavLink
+        className='flex items-center justify-center gap-2 flex-row text-sm'
         style={({ isActive, isPending }) => {
           return {
             color: isActive ? '#f3484b' : '#3d4152',
@@ -26,12 +27,13 @@ const navList = (
         }}
         to={'/'}
       >
-        <HomeIcon className='hero-icon text-blue-500' />
+        <HomeIcon className='hero-icon w-4 h-4' />
         Home
       </NavLink>
     </li>
     <li>
       <NavLink
+        className='flex items-center justify-center gap-2 flex-row text-sm'
         style={({ isActive, isPending }) => {
           return {
             color: isActive ? '#f3484b' : '#3d4152',
@@ -39,12 +41,13 @@ const navList = (
         }}
         to={'/help'}
       >
-        <LifebuoyIcon className='hero-icon text-blue-500' />
+        <LifebuoyIcon className='hero-icon w-4 h-4' />
         Help
       </NavLink>
     </li>
     <li>
       <NavLink
+        className='flex items-center justify-center gap-2 flex-row text-sm'
         style={({ isActive, isPending }) => {
           return {
             color: isActive ? '#f3484b' : '#3d4152',
@@ -52,12 +55,13 @@ const navList = (
         }}
         to={'/about'}
       >
-        <InformationCircleIcon className='hero-icon text-blue-500' />
+        <InformationCircleIcon className='hero-icon w-4 h-4' />
         About
       </NavLink>
     </li>
     <li>
       <NavLink
+        className='flex items-center justify-center gap-2 flex-row text-sm'
         style={({ isActive, isPending }) => {
           return {
             color: isActive ? '#f3484b' : '#3d4152',
@@ -65,12 +69,13 @@ const navList = (
         }}
         to={'/profile'}
       >
-        <UserIcon className='hero-icon text-blue-500' />
+        <UserIcon className='hero-icon w-4 h-4' />
         Profile
       </NavLink>
     </li>
     <li>
       <NavLink
+        className='flex items-center justify-center gap-2 flex-row text-sm'
         style={({ isActive, isPending }) => {
           return {
             color: isActive ? '#f3484b' : '#3d4152',
@@ -78,7 +83,7 @@ const navList = (
         }}
         to={'/cart'}
       >
-        <ShoppingCartIcon className='hero-icon text-blue-500' />
+        <ShoppingCartIcon className='hero-icon w-4 h-4' />
         Cart
       </NavLink>
     </li>
@@ -87,7 +92,7 @@ const navList = (
 
 const ToolBarComponent = () => {
   return (
-    <div className='toolbar'>
+    <div className='flex items-center justify-between px-12 py-3 shadow-sm'>
       {leftSideNav}
       {navList}
     </div>

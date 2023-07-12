@@ -37,13 +37,21 @@ const BodyComponent = () => {
     );
   }
 
-  return allRestaurants.length === 0 ? (
+  return allRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
     <div>
-      <p className='restaurant-count'>
-        <span>{totalRestaurants} restaurants</span>
-        <span>
+      <div className='w-full bg-gray-900 h-72 gap-4 flex items-stretch justify-center py-5'>
+        <div className='w-[300px] bg-gray-400'></div>
+        <div className='w-[300px] bg-gray-400'></div>
+        <div className='w-[300px] bg-gray-400'></div>
+        <div className='w-[300px] bg-gray-400'></div>
+      </div>
+      <p className='px-12 py-10 restaurant-count flex items-center justify-between'>
+        <span className='font-normal text-lg'>
+          <span className='font-semibold'>{totalRestaurants}</span> restaurants
+        </span>
+        <span className='flex gap-4'>
           <input
             type='text'
             placeholder='Search for restaurants...'
@@ -51,6 +59,7 @@ const BodyComponent = () => {
             onChange={(e) => {
               setSearchedText(e.target.value);
             }}
+            className='border-stone-300 text-sm border-[1px] rounded px-4 py-1'
           />
           <button
             onClick={() => {
@@ -58,13 +67,14 @@ const BodyComponent = () => {
                 searchRestaurants(searchedText, allRestaurants)
               );
             }}
+            className='unset text-sm rounded px-4 py-1 bg-rose-800 text-white'
           >
             Search
           </button>
         </span>
       </p>
       {filteredRestaurants.length === 0 ? (
-        <div className='not-found-error'>
+        <div className='px-12 not-found-error'>
           <img className='not-found-error-img' src={notFound} />
           <p>
             <ExclamationTriangleIcon className='hero-icon text-blue-500' />
@@ -72,7 +82,7 @@ const BodyComponent = () => {
           </p>
         </div>
       ) : (
-        <div className='card-container'>
+        <div className='px-12 card-container flex flex-wrap gap-6'>
           {filteredRestaurants.map((restaurant) => {
             return (
               <RestaurantCard {...restaurant.data} key={restaurant.data?.id} />
