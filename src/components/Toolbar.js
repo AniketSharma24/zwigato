@@ -1,20 +1,24 @@
-import iconLogo from '../../assets/logo/iconLogo.png';
 import {
-  LifebuoyIcon,
   HomeIcon,
-  UserIcon,
-  ShoppingCartIcon,
   InformationCircleIcon,
+  LifebuoyIcon,
+  ShoppingCartIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import iconLogo from '../../assets/logo/iconLogo.png';
+import UserContext from '../constants/UserContext';
 
 const logo = <img className='w-12 h-10' src={iconLogo} alt='app-logo' />;
+
 const leftSideNav = (
   <div className='flex items-center justify-center gap-5 text-sm'>
     {logo}
     <span>Silicon City, Banglore</span>
   </div>
 );
+
 const navList = (
   <ul className='flex items-center justify-center gap-5'>
     <li>
@@ -91,9 +95,14 @@ const navList = (
 );
 
 const ToolBarComponent = () => {
+  const { user } = useContext(UserContext);
+
+  console.log(user);
+
   return (
     <div className='flex items-center justify-between px-12 py-3 shadow-sm'>
       {leftSideNav}
+      <div>{user?.name}</div>
       {navList}
     </div>
   );

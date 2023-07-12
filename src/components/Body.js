@@ -1,6 +1,7 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import notFound from '../../assets/images/notFound.svg';
+import UserContext from '../constants/UserContext';
 import { API_URL } from '../constants/constant';
 import RestaurantCard from './RestaurantCard';
 import ServerError from './ServerError';
@@ -13,6 +14,8 @@ const BodyComponent = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [isError, setIsError] = useState(false);
   const [totalRestaurants, setTotalRestaurants] = useState(0);
+
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getAllRestaurants();
@@ -40,7 +43,7 @@ const BodyComponent = () => {
   return allRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div>
+    <div className='mb-10'>
       <div className='w-full bg-gray-900 h-72 gap-4 flex items-stretch justify-center py-5'>
         <div className='w-[300px] bg-gray-400'></div>
         <div className='w-[300px] bg-gray-400'></div>
@@ -58,6 +61,15 @@ const BodyComponent = () => {
             value={searchedText}
             onChange={(e) => {
               setSearchedText(e.target.value);
+            }}
+            className='border-stone-300 text-sm border-[1px] rounded px-4 py-1'
+          />
+          <input
+            type='text'
+            placeholder='Loggedin user...'
+            value={user.name}
+            onChange={(e) => {
+              setUser({ ...user, name: e.target.value });
             }}
             className='border-stone-300 text-sm border-[1px] rounded px-4 py-1'
           />

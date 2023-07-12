@@ -1,6 +1,7 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import UserContext from '../../constants/UserContext';
 import BodyComponent from '../Body';
 import Cart from '../Cart';
 import FooterComponent from '../Footer';
@@ -13,12 +14,19 @@ import ToolBarComponent from '../Toolbar';
 const About = lazy(() => import('../About'));
 
 const AppLayout = () => {
+  const [userDetails, setUserDetails] = useState({
+    name: 'Aniket Sharma',
+    email: 'sharmaaniket@gmail.com',
+  });
+
   return (
-    <>
+    <UserContext.Provider
+      value={{ user: userDetails, setUser: setUserDetails }}
+    >
       <ToolBarComponent />
       <Outlet />
       <FooterComponent />
-    </>
+    </UserContext.Provider>
   );
 };
 

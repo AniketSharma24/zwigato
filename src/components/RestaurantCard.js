@@ -3,7 +3,7 @@ import { StarIcon, ReceiptPercentIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from 'react-router-dom';
 /**
  * @param {*} rating
- * @return {*} 
+ * @return {*}
  */
 const ratingClass = (rating) => {
   if (rating < 4) {
@@ -26,11 +26,11 @@ const RestaurantCard = ({
   aggregatedDiscountInfo,
 }) => {
   const navigate = useNavigate();
-  
-/**
- * @param {*} id
- */
-function navigateTo(id) {
+
+  /**
+   * @param {*} id
+   */
+  function navigateTo(id) {
     navigate('/restaurant/' + id);
   }
 
@@ -41,7 +41,7 @@ function navigateTo(id) {
       <p className='res-cuisine'>{cuisines.join(', ')}</p>
       <p className='res-data'>
         <span className={ratingClass(avgRating)}>
-          <StarIcon className='hero-icon text-blue-500' />
+          <StarIcon className='hero-icon w-3 h-3 text-white' />
           {avgRating}
         </span>
         <span className='seperator'>|</span>
@@ -51,7 +51,7 @@ function navigateTo(id) {
       </p>
       {aggregatedDiscountInfo?.shortDescriptionList[0] ? (
         <p className='res-discount'>
-          <ReceiptPercentIcon className='hero-icon text-blue-500' />
+          <ReceiptPercentIcon className='hero-icon w-3 h-3' />
           {aggregatedDiscountInfo?.shortDescriptionList[0]?.meta}
         </p>
       ) : (
