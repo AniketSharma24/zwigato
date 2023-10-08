@@ -66,10 +66,10 @@ const BodyComponent = () => {
           />
           <input
             type='text'
-            placeholder='Loggedin user...'
+            placeholder='Logged in user...'
             value={user.name}
             onChange={(e) => {
-              setUser({ ...user, name: e.target.value });
+              setUser({ name: e.target.value, ...user });
             }}
             className='border-stone-300 text-sm border-[1px] rounded px-4 py-1'
           />
@@ -86,10 +86,10 @@ const BodyComponent = () => {
         </span>
       </p>
       {filteredRestaurants.length === 0 ? (
-        <div className='px-12 not-found-error'>
-          <img className='not-found-error-img' src={notFound} />
-          <p>
-            <ExclamationTriangleIcon className='hero-icon text-blue-500' />
+        <div className='px-12 not-found-error flex flex-col gap-4 items-center'>
+          <img className='not-found-error-img w-48 h-48' src={notFound} />
+          <p className='text-sm flex gap-2 items-center'>
+            <ExclamationTriangleIcon className='hero-icon w-4 h-4 text-red-500' />
             No restaurant matches your search criteria
           </p>
         </div>

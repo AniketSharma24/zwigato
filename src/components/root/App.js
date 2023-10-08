@@ -10,6 +10,8 @@ import ProfileClass from '../ProfileClass';
 import RestaurantDetails from '../RestaurantDetails';
 import RouteError from '../RouteError';
 import ToolBarComponent from '../Toolbar';
+import { Provider } from 'react-redux';
+import store from '../../constants/store';
 
 const About = lazy(() => import('../About'));
 
@@ -20,13 +22,15 @@ const AppLayout = () => {
   });
 
   return (
-    <UserContext.Provider
-      value={{ user: userDetails, setUser: setUserDetails }}
-    >
-      <ToolBarComponent />
-      <Outlet />
-      <FooterComponent />
-    </UserContext.Provider>
+    <Provider store={store}>
+      <UserContext.Provider
+        value={{ user: userDetails, setUser: setUserDetails }}
+      >
+        <ToolBarComponent />
+        <Outlet />
+        <FooterComponent />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
